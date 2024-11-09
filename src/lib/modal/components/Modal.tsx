@@ -11,6 +11,27 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+const sizeClasses = {
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg",
+  xl: "max-w-xl",
+  full: "max-w-full m-4",
+};
+
+const positionClasses = {
+  center: "items-center",
+  top: "items-start mt-16",
+  bottom: "items-end mb-16",
+};
+
+const animationClasses = {
+  fade: "animate-fade",
+  slide: "animate-slide-up",
+  scale: "animate-scale",
+  none: "",
+};
+
 export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
