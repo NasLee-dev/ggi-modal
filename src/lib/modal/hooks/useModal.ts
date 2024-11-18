@@ -28,7 +28,7 @@ export const useModal = (initialState: boolean = false) => {
       window.removeEventListener("keydown", handleKeyPress);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, closeModal]);
+  }, [isOpen]);
 
   return {
     isOpen,
