@@ -1,0 +1,26 @@
+# Development
+node_modules/
+src/
+tests/
+examples/
+
+# Config files
+.github/
+.gitignore
+.prettierrc
+.eslintrc
+tsconfig.json
+rollup.config.js
+jest.config.js
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build process
+.travis.yml
+.jenkins.yml

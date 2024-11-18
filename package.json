@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "modal component for ggi",
   "main": "index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -21,6 +26,9 @@
   "author": "wootaik lee",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/node": "^22.9.0",
@@ -34,6 +42,9 @@
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
+    "rollup": "^4.27.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "tailwind-merge": "^2.5.4",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",

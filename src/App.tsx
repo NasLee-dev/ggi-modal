@@ -1,6 +1,7 @@
 import { useModal } from "./lib/modal/components/hooks/useModal";
-import { Modal } from "./lib/modal/components/Modal";
+import { BaseModal } from "./lib/modal/components/modal/BaseModal";
 import React from "react";
+import { AlertModal } from "./lib/modal/components/modal/AlertModal";
 
 function App() {
   const { isOpen, openModal, closeModal } = useModal();
@@ -18,7 +19,8 @@ function App() {
         Modal is: {isOpen ? "Open" : "Closed"}
       </div>
 
-      <Modal isOpen={isOpen} onClose={closeModal} title="환영합니다">
+      {/* BaseModal */}
+      {/* <BaseModal isOpen={isOpen} onClose={closeModal} title="환영합니다">
         <div className="space-y-4">
           <p className="text-gray-600">Portal을 사용한 모달 테스트입니다.</p>
           <button
@@ -28,7 +30,17 @@ function App() {
             닫기
           </button>
         </div>
-      </Modal>
+      </BaseModal> */}
+
+      {/* AlertModal */}
+      <AlertModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        title="알림"
+        description="알림"
+      >
+        <p>Alert Modal</p>
+      </AlertModal>
     </div>
   );
 }
