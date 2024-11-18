@@ -23,3 +23,10 @@ export interface ModalProps {
   buttonPosition?: "start" | "end" | "center";
   isAlert?: boolean;
 }
+
+export interface BaseModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  title?: string;
+}
