@@ -1,6 +1,6 @@
 {
-  "name": "ggi-modal",
-  "version": "1.0.0",
+  "name": "@ggi-kit/modal",
+  "version": "1.0.1",
   "description": "modal component for ggi",
   "main": "index.js",
   "module": "dist/index.esm.js",
@@ -9,14 +9,14 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint"
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [
     "modal",
@@ -26,9 +26,19 @@
   "author": "wootaik lee",
   "license": "ISC",
   "devDependencies": {
+    "@chromatic-com/storybook": "3.2.2",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
+    "@storybook/addon-actions": "^8.4.4",
+    "@storybook/addon-controls": "^8.4.4",
+    "@storybook/addon-essentials": "8.4.4",
+    "@storybook/addon-interactions": "8.4.4",
+    "@storybook/addon-onboarding": "8.4.4",
+    "@storybook/blocks": "8.4.4",
+    "@storybook/react": "8.4.4",
+    "@storybook/react-vite": "8.4.4",
+    "@storybook/test": "8.4.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/node": "^22.9.0",
@@ -39,13 +49,16 @@
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.14.0",
+    "eslint-plugin-storybook": "^0.11.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "rollup": "^4.27.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "8.4.4",
     "tailwind-merge": "^2.5.4",
+    "tslib": "^2.8.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
     "vitest": "^2.1.4"
@@ -57,6 +70,12 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.456.0",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.14"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

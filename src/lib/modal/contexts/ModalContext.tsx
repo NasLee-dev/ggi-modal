@@ -27,7 +27,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children, defaultM
   const [modals, setModals] = useState<Record<string, boolean>>(() => {
     const initialModals: Record<string, boolean> = {};
     defaultModals.forEach((modalName) => {
-      initialModals[modalName] = true;
+      initialModals[modalName] = false;
     })
     return initialModals;
   });

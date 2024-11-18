@@ -1,32 +1,31 @@
-export default {
+const typescript = require('@rollup/plugin-typescript');
+const commonjs = require('@rollup/plugin-commonjs');
+const resolve = require('@rollup/plugin-node-resolve');
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+
+module.exports = {
   input: 'src/lib/modal/index.ts',
   output: [
     {
-      file: 'dist/modal.js',
+      file: 'dist/index.js',
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
     },
     {
-      file: 'dist/modal.esm.js',
+      file: 'dist/index.esm.js',
       format: 'esm',
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript(),
-    postcss({
-      config: {
-        path: './postcss.config.js',
-      },
-      extensions: ['.css'],
-      minimize: true,
-      inject: {
-        insertAt: 'top',
-      },
+    typescript({
+      tsconfig: './tsconfig.json',
+      declaration: true,
+      declarationDir: 'dist',
     }),
   ],
-  external: ['react', 'react-dom', 'lucide-react'],
-}
+  external: ['react', 'react-dom'],
+};
