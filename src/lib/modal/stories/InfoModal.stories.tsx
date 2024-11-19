@@ -22,6 +22,16 @@ const meta: Meta<typeof InfoModal> = {
       control: 'boolean',
       description: '모달 표시 여부'
     },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl', 'full'],
+      description: '모달 가로 사이즈'
+    },
+    position: {
+      control: 'select',
+      options: ['top', 'center', 'bottom'],
+      description: '모달 위치'
+    },
     title: { 
       control: 'text',
       description: '모달 제목'
