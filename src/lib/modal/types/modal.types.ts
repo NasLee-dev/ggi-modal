@@ -6,9 +6,9 @@ export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  size?: ModalSize;
   className?: string;
   position?: ModalPosition;
-  size?: ModalSize;
   title?: string;
   description?: string;
   overlayClassName?: string;
@@ -21,14 +21,6 @@ export interface ModalProps {
   ariaLabel?: string;
   ariaDescribedby?: string;
   buttonPosition?: "start" | "end" | "center";
-  isAlert?: boolean;
-}
-
-export interface BaseModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  title?: string;
   modalStyle?: React.CSSProperties; 
   contentStyle?: React.CSSProperties; 
   titleStyle?: React.CSSProperties;   
@@ -39,7 +31,9 @@ export interface BaseModalProps {
   onConfirm: () => void;
 }
 
-export interface AlertModalProps extends BaseModalProps {
+export interface BaseModalProps extends ModalProps {}
+
+export interface AlertModalProps extends ModalProps {
   description?: string;
 }
 

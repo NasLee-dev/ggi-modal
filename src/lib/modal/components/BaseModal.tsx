@@ -3,6 +3,7 @@ import { BaseModalProps } from "../types/modal.types";
 import { Portal } from "./Portal";
 import { X } from "lucide-react";
 import { FooterButton } from "../../common/components/FooterButton";
+import { getModalSize } from "../utils/getModalSize";
 
 export const BaseModal: React.FC<BaseModalProps> = ({
   isOpen,
@@ -16,7 +17,11 @@ export const BaseModal: React.FC<BaseModalProps> = ({
   confirmText,
   cancelText,
   onConfirm,
+  size = "md",
+  position = "center",
+  ...props
 }) => {
+  const sizeStyle = getModalSize(size);
   const defaultStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -52,6 +57,7 @@ export const BaseModal: React.FC<BaseModalProps> = ({
           onClick={(e) => e.stopPropagation()}
           style={{
             ...modalStyle,
+            ...sizeStyle,
             ...defaultStyle.modal,
             position: "relative",
             width: modalStyle?.width || "550px",
