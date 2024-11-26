@@ -62,6 +62,9 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen,
                 "rounded-lg border border-gray-200",
               )}
               onClick={onClose}
+              style={{
+                backgroundColor: 'white'
+              }}
             >
               <span className={cn(
                 "text-center text-gray-800 text-sm font-semibold font-['Inter'] tracking-tight"
@@ -73,9 +76,12 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen,
               className={cn(
                 "flex items-center justify-center",
                 "h-10 min-w-[200px]",
-                "rounded-lg shadow bg-[#2563eb]",
+                "rounded-lg shadow",
               )}
               onClick={onConfirm}
+              style={{
+                backgroundColor: "#2563eb",
+              }}
             >
               <span
                 className={cn(
