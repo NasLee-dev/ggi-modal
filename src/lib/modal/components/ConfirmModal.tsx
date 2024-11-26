@@ -56,30 +56,39 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen,
             )}
           >
             <button
-              className={cn(
-                "flex items-center justify-center",
-                "h-10 min-w-[100px]",
-                "rounded-lg border border-gray-200",
-              )}
               onClick={onClose}
               style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "35%",
+                borderRadius: "8px",
+                height: "40px",
+                border: "1px solid #e5e7eb",
                 backgroundColor: 'white'
               }}
             >
               <span className={cn(
                 "text-center text-gray-800 text-sm font-semibold font-['Inter'] tracking-tight"
-              )}>
+              )}
+                style={{
+                  color: "#4b5563",
+                  textAlign: "center"
+                  
+                }}
+              >
                 {cancelText || '취소'}
               </span>
             </button>
             <button
-              className={cn(
-                "flex items-center justify-center",
-                "h-10 min-w-[200px]",
-                "rounded-lg shadow",
-              )}
               onClick={onConfirm}
               style={{
+                width: "65%",
+                borderRadius: "8px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 backgroundColor: "#2563eb",
               }}
             >
