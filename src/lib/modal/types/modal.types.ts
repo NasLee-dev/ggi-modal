@@ -2,10 +2,15 @@ export type ModalSize = "sm" | "md" | "lg" | "xl" | "full";
 
 export type ModalPosition = "top" | "center" | "bottom";
 
+export type ButtonPosition = "start" | "end" | "center";
+
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  onConfirm: () => void;
+  confirmText?: string;
+  cancelText?: string;
   size?: ModalSize;
   className?: string;
   position?: ModalPosition;
@@ -20,15 +25,12 @@ export interface ModalProps {
   duration?: number;
   ariaLabel?: string;
   ariaDescribedby?: string;
-  buttonPosition?: "start" | "end" | "center";
+  buttonPosition?: ButtonPosition;
   modalStyle?: React.CSSProperties; 
   contentStyle?: React.CSSProperties; 
-  titleStyle?: React.CSSProperties;   
+  titleStyle?: React.CSSProperties;
   childrenStyle?: React.CSSProperties;
   overlayStyle?: React.CSSProperties; 
-  confirmText?: string;
-  cancelText?: string;
-  onConfirm: () => void;
 }
 
 export interface BaseModalProps extends ModalProps {}
@@ -37,7 +39,10 @@ export interface AlertModalProps extends ModalProps {
   description?: string;
 }
 
-export interface InfoModalProps extends BaseModalProps {
+export interface InfoModalProps extends Omit<BaseModalProps, "confirmText" | "onConfirm" | "cancelText"> {
+  hasDimmed?: boolean;
   description?: string;
-  hasButton?: boolean;
+  descriptionStyle?: React.CSSProperties;
 }
+
+export interface ConfirmModalProps extends Omit<BaseModalProps, "title" | "description" | "titleStyle"> {}

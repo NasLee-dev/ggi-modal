@@ -1,25 +1,26 @@
 import React from "react"
 import { InfoModalProps } from "../types/modal.types"
 import { Portal } from "./Portal";
-import { FooterButton } from "../../common/components/FooterButton";
 import { X } from "lucide-react";
+import { cn } from "../utils/cn";
+import { getModalSize } from "../utils/getModalSize";
+import AlertClose from "../icons/AlertClose";
 
 export const InfoModal = ({
+  size = "lg",
   isOpen,
   onClose,
   children,
   title,
   modalStyle,
-  contentStyle,
   titleStyle,
   childrenStyle,
   overlayStyle,
-  confirmText,
-  cancelText,
-  onConfirm,
   description,
-  hasButton,
+  descriptionStyle,
+  hasDimmed = false,
 }: InfoModalProps) => {
+  const modalSize = getModalSize(size);
   const defaultStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -37,7 +38,6 @@ export const InfoModal = ({
     },
     children: {
       paddingBottom: "80px",
-      padding: hasButton ? "1rem" : "",
     },
   }
 
@@ -46,9 +46,17 @@ export const InfoModal = ({
     <Portal>
       <div className="fixed inset-0 z-[100] flex items-center justify-center" style={overlayStyle}>
         <div
-          className="fixed inset-0 bg-black/50 transition-opacity"
           onClick={onClose}
-          style={defaultStyle.overlay}
+          style={{
+            ...defaultStyle.overlay,
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 100,
+            display: hasDimmed ? "block" : "none",
+          }}
         />
         <div 
           onClick={(e) => e.stopPropagation()}
@@ -56,7 +64,7 @@ export const InfoModal = ({
             ...modalStyle,
             ...defaultStyle.modal,
             position: "relative",
-            width: modalStyle?.width || "550px",
+            width: modalStyle?.width || modalSize.width,
             height: modalStyle?.height || "auto",
             padding: modalStyle?.padding || "40px",
             flexDirection: modalStyle?.flexDirection || "column",
@@ -67,19 +75,30 @@ export const InfoModal = ({
           {/* 헤더 영역 */}
           <div className="flex w-full items-center relative"> 
             <div className="flex flex-col w-full gap-2">
-              <h2 
-                className="text-xl font-semibold w-full text-left" 
-                style={titleStyle}
+              <span
+                className={cn(
+                  "text-xl font-semibold w-full text-left",
+                  { "mb-2": description }
+                )}
+                style={{
+                  ...titleStyle,
+                }}
               >
                 {title}
-              </h2>
-              <h3 className="text-lg font-normal w-full text-left">
+              </span>
+              <span
+                className={cn(
+                  "w-full text-gray-800 text-md font-normal font-['SUIT'] leading-[18.90px]"
+                )}
+                style={{
+                  ...descriptionStyle,
+                }}
+              >
                 {description}
-              </h3>
+              </span>
             </div>
-            <button
-              onClick={onClose}
-              className="rounded-full p-1 hover:bg-gray-100 transition-colors"
+            <div
+              className="rounded-full p-1 transition-colors"
               aria-label="Close modal"
               style={{
                 position: "absolute",
@@ -87,14 +106,14 @@ export const InfoModal = ({
                 right: "-20px",
               }}
             >
-              <X />
-            </button>
+              <AlertClose 
+                close={onClose}
+              />
+            </div>
           </div>
-
           {/* 컨텐츠 영역 */}
           <div 
             style={{
-              ...defaultStyle.children,
               ...childrenStyle,
               overflowY: "auto",
               flex: 1,
@@ -102,18 +121,6 @@ export const InfoModal = ({
           >
             {children}
           </div>
-
-          {/* 푸터 버튼 영역 */}
-          {
-            hasButton && (
-              <FooterButton
-                onClose={onClose}
-                onConfirm={onConfirm}
-                confirmText={confirmText || '선택하기'}
-                cancelText={cancelText || '취소하기'}
-              />
-            )
-          }
         </div>
       </div>
     </Portal>
