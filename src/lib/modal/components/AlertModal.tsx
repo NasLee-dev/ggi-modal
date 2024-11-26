@@ -1,5 +1,5 @@
 import React from "react";
-import AlertClose from "./icons/AlertClose";
+import AlertClose from "../icons/AlertClose";
 import { AlertModalProps } from "../types/modal.types";
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
@@ -18,7 +18,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   position = "center",
   ...props
 }) => {
-  const sizeStyle = getModalSize(size);
+  const modalSize = getModalSize(size);
   if (!isOpen) return null;
 
   return (
@@ -28,11 +28,11 @@ export const AlertModal: React.FC<AlertModalProps> = ({
           className="flex justify-center items-center bg-black/60 rounded-3xl w-[480px] h-[240px] relative" 
           style={{
             ...modalStyle,
-            ...sizeStyle,
+            ...modalSize,
           }}
         >
           <div className="flex items-start justify-end p-5 absolute right-0 top-0">
-            <AlertClose close={onClose} />
+            <AlertClose close={onClose} isAlert={true} />
           </div>
           <div className="flex w-full justify-center items-center" style={contentStyle}>
             <p className="flex flex-col">

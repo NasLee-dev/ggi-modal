@@ -1,9 +1,10 @@
 import React from "react";
 import { BaseModalProps } from "../types/modal.types";
 import { Portal } from "./Portal";
-import { X } from "lucide-react";
 import { FooterButton } from "../../common/components/FooterButton";
 import { getModalSize } from "../utils/getModalSize";
+import { DefaultStyle } from "../constants/defaultStyle";
+import AlertClose from "../icons/AlertClose";
 
 export const BaseModal: React.FC<BaseModalProps> = ({
   isOpen,
@@ -17,32 +18,11 @@ export const BaseModal: React.FC<BaseModalProps> = ({
   confirmText,
   cancelText,
   onConfirm,
-  size = "md",
+  size = "lg",
   position = "center",
   ...props
 }) => {
-  const sizeStyle = getModalSize(size);
-  const defaultStyle = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
-    modal: {
-      backgroundColor: "white",
-      borderRadius: "16px",
-      boxShadow: "0px 20px 13px 0px rgba(0, 0, 0, 0.03), 0px 8px 5px 0px rgba(0, 0, 0, 0.08)",
-      display: "flex",
-      zIndex: 101,
-    },
-    title: {
-      fontSize: "1.5rem",
-      fontWeight: "bold",
-    },
-    children: {
-      padding: "1rem",
-      paddingBottom: "80px",
-    },
-  }
-
+  const modalSize = getModalSize(size);
   if (!isOpen) return null;
 
   return (
@@ -51,16 +31,15 @@ export const BaseModal: React.FC<BaseModalProps> = ({
         <div
           className="fixed inset-0 bg-black/50 transition-opacity"
           onClick={onClose}
-          style={defaultStyle.overlay}
+          style={DefaultStyle.overlay}
         />
         <div 
           onClick={(e) => e.stopPropagation()}
           style={{
             ...modalStyle,
-            ...sizeStyle,
-            ...defaultStyle.modal,
+            ...DefaultStyle.modal,
             position: "relative",
-            width: modalStyle?.width || "550px",
+            width: modalStyle?.width || modalSize.width,
             height: modalStyle?.height || "auto",
             padding: modalStyle?.padding || "40px",
             flexDirection: modalStyle?.flexDirection || "column",
@@ -76,9 +55,8 @@ export const BaseModal: React.FC<BaseModalProps> = ({
             >
               {title}
             </h2>
-            <button
-              onClick={onClose}
-              className="rounded-full p-1 hover:bg-gray-100 transition-colors"
+            <div
+              className="rounded-full p-1 transition-colors"
               aria-label="Close modal"
               style={{
                 position: "absolute",
@@ -86,20 +64,23 @@ export const BaseModal: React.FC<BaseModalProps> = ({
                 right: "-20px",
               }}
             >
-              <X />
-            </button>
+              <AlertClose 
+                close={onClose}
+              />
+            </div>
           </div>
 
           {/* 컨텐츠 영역 */}
-          <div style={{
-            ...defaultStyle.children,
-            ...childrenStyle,
-            overflowY: "auto",
-            flex: 1,
-          }}>
+          <div 
+            style={{
+              ...DefaultStyle.children,
+              ...childrenStyle,
+              overflowY: "auto",
+              flex: 1,
+            }}
+          >
             {children}
           </div>
-
           {/* 푸터 버튼 영역 */}
           <FooterButton 
             onClose={onClose}

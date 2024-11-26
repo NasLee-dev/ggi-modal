@@ -1,6 +1,7 @@
 import React from "react"
 import { AlertModal, BaseModal, useModalContext } from "../lib/modal"
 import { InfoModal } from "../lib/modal/components/InfoModal"
+import { ConfirmModal } from "../lib/modal/components/ConfirmModal"
 
 export default function Ui() {
   const { modals, openModal, closeModal } = useModalContext()
@@ -9,6 +10,7 @@ export default function Ui() {
       <button onClick={() => openModal("info")}>Open Info Modal</button>
       <button onClick={() => openModal("alert")}>Open Alert Modal</button>
       <button onClick={() => openModal("base")}>Open Base Modal</button>
+      <button onClick={() => openModal("confirm")}>Open Confirm Modal</button>
       <AlertModal
         isOpen={modals.alert}
         onClose={() => closeModal("alert")}
@@ -23,17 +25,31 @@ export default function Ui() {
         title="Base Modal"
         onConfirm={() => console.log("base")}
       >
-        <h1>Base Modal</h1>
+        <div className="flex flex-col">
+          <h1>Base Modal</h1>
+          <h1>Base Modal</h1>
+          <h1>Base Modal</h1>
+          <h1>Base Modal</h1>
+          <h1>Base Modal</h1>
+          <h1>Base Modal</h1>
+        </div>
       </BaseModal>
       <InfoModal
         isOpen={modals.info}
         onClose={() => closeModal("info")}
-        title="Info Modal"
-        description="This is an info modal"
-        onConfirm={() => console.log("info")}
+        title="This is an Info Modal Title"
+        description="This is an info modal description"
+        hasDimmed={true}
       >
         <h1>InfoModal Contents</h1>
       </InfoModal>
+      <ConfirmModal
+        isOpen={modals.confirm}
+        onClose={() => closeModal("confirm")}
+        onConfirm={() => console.log("confirm")}
+      >
+        <h1>Confirm Modal</h1>
+      </ConfirmModal>
     </div>
   )
 }

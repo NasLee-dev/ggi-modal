@@ -3,7 +3,7 @@ export const MODAL_SIZES = {
     width: "200px",
   },
   md: {
-    width: "350px",
+    width: "400px",
   },
   lg: {
     width: "500px",
