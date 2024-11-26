@@ -50,10 +50,13 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen,
           </div>
           {/* Button container */}
           <div
-            className={cn(
-              "flex flex-row justify-center",
-              "w-full gap-4",
-            )}
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "10px",
+              display: "flex",
+            }}
           >
             <button
               onClick={onClose}
@@ -74,7 +77,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen,
                 style={{
                   color: "#4b5563",
                   textAlign: "center"
-                  
+
                 }}
               >
                 {cancelText || '취소'}
