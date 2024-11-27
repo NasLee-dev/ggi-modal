@@ -15,7 +15,6 @@ export default function Ui() {
         isOpen={modals.alert}
         onClose={() => closeModal("alert")}
         title="Alert Modal"
-        onConfirm={() => console.log("confirm")}
         modalStyle={{
           width: "100px"
         }}

@@ -35,7 +35,7 @@ export interface ModalProps {
 
 export interface BaseModalProps extends ModalProps {}
 
-export interface AlertModalProps extends ModalProps {
+export interface AlertModalProps extends Omit<BaseModalProps, "confirmText" | "onConfirm" | "cancelText"> {
   description?: string;
 }
 
