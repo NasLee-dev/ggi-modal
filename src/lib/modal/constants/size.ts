@@ -1,17 +1,7 @@
 export const MODAL_SIZES = {
-  sm: {
-    width: "200px",
-  },
-  md: {
-    width: "400px",
-  },
-  lg: {
-    width: "500px",
-  },
-  xl: {
-    width: "650px",
-  },
-  full: {
-    width: "90vw",
-  },
+  sm: { width: 'min(90vw, 250px)' },
+  md: { width: 'min(90vw, 480px)' },
+  lg: { width: 'min(90vw, 700px)' },
+  xl: { width: 'min(90vw, 900px)' },
+  full: { width: '90vw' }
 } as const;

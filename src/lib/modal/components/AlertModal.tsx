@@ -14,32 +14,102 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   titleStyle,
   childrenStyle,
   overlayStyle,
-  size = "lg",
+  size,
   position = "center",
   ...props
 }) => {
   const modalSize = getModalSize(size);
+
+  // 기본 스타일과 props로 받은 스타일을 병합
+  const finalModalStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: '24px',
+    position: 'relative' as 'relative',
+    width: modalStyle?.width || modalSize.width || '480px',
+    height: modalStyle?.height || '240px',
+    ...(modalStyle || {})  // 나머지 modalStyle 속성들
+  };
+
+  const getPositionStyle = () => {
+    const styles = {
+      top: { alignItems: 'flex-start' },
+      bottom: { alignItems: 'flex-end' },
+      center: { alignItems: 'center' }
+    };
+    return styles[position] || styles.center;
+  };
+
   if (!isOpen) return null;
 
   return (
     <Portal>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center" style={overlayStyle}>
-        <div 
-          className="flex justify-center items-center bg-black/60 rounded-3xl w-[480px] h-[240px] relative" 
-          style={{
-            ...modalStyle,
-            ...modalSize,
-          }}
-        >
-          <div className="flex items-start justify-end p-5 absolute right-0 top-0">
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 100,
+          display: 'flex',
+          justifyContent: 'center',
+          ...getPositionStyle(),
+          ...overlayStyle
+        }}
+      >
+        <div style={finalModalStyle}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-end',
+              padding: '20px',
+              position: 'absolute',
+              right: 0,
+              top: 0
+            }}
+          >
             <AlertClose close={onClose} isAlert={true} />
           </div>
-          <div className="flex w-full justify-center items-center" style={contentStyle}>
-            <p className="flex flex-col">
-              <span className="text-center text-white text-xl font-bold font-['SUIT'] leading-[31px]" style={titleStyle}>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              ...contentStyle
+            }}
+          >
+            <p
+              style={{
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
+              <span
+                style={{
+                  textAlign: 'center',
+                  color: 'white',
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  fontFamily: 'SUIT',
+                  lineHeight: '31px',
+                  ...titleStyle
+                }}
+              >
                 {title}
               </span>
-              <span className="text-center text-white text-xl font-bold font-['SUIT'] leading-[31px]" style={childrenStyle}>
+              <span
+                style={{
+                  textAlign: 'center',
+                  color: 'white',
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  fontFamily: 'SUIT',
+                  lineHeight: '31px',
+                  ...childrenStyle
+                }}
+              >
                 {children}
               </span>
             </p>

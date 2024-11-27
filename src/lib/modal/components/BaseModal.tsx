@@ -7,89 +7,132 @@ import { DefaultStyle } from "../constants/defaultStyle";
 import AlertClose from "../icons/AlertClose";
 
 export const BaseModal: React.FC<BaseModalProps> = ({
-  isOpen,
-  onClose,
-  title,
-  children,
-  overlayStyle,
-  modalStyle,
-  titleStyle,
-  childrenStyle,
-  confirmText,
-  cancelText,
-  onConfirm,
-  size = "lg",
-  position = "center",
-  ...props
+isOpen,
+onClose,
+title,
+children,
+overlayStyle,
+modalStyle,
+titleStyle,
+childrenStyle,
+confirmText,
+cancelText,
+onConfirm,
+size = "lg",
+position = "center",
+...props
 }) => {
-  const modalSize = getModalSize(size);
-  if (!isOpen) return null;
+const modalSize = getModalSize(size);
 
-  return (
-    <Portal>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center" style={overlayStyle}>
-        <div
-          className="fixed inset-0 bg-black/50 transition-opacity"
-          onClick={onClose}
-          style={DefaultStyle.overlay}
-        />
+const getPositionStyle = () => {
+  const styles = {
+    top: { alignItems: 'flex-start' },
+    bottom: { alignItems: 'flex-end' },
+    center: { alignItems: 'center' }
+  };
+  return styles[position] || styles.center;
+};
+
+if (!isOpen) return null;
+
+return (
+  <Portal>
+    <div 
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        ...getPositionStyle(),
+        ...overlayStyle
+      }}
+    >
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          transition: 'opacity 0.2s',
+          ...DefaultStyle.overlay
+        }}
+        onClick={onClose}
+      />
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          ...modalStyle,
+          ...DefaultStyle.modal,
+          position: "relative",
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          width: modalStyle?.width || 'min(90vw, ' + (modalSize.width || '550px') + ')',
+          height: modalStyle?.height || "auto",
+          padding: modalStyle?.padding || "40px",
+          display: 'flex',
+          flexDirection: modalStyle?.flexDirection || "column",
+          gap: modalStyle?.gap || "40px",
+          minHeight: "200px"
+        }}
+      >
+        {/* 헤더 영역 */}
         <div 
-          onClick={(e) => e.stopPropagation()}
           style={{
-            ...modalStyle,
-            ...DefaultStyle.modal,
-            position: "relative",
-            width: modalStyle?.width || modalSize.width,
-            height: modalStyle?.height || "auto",
-            padding: modalStyle?.padding || "40px",
-            flexDirection: modalStyle?.flexDirection || "column",
-            gap: modalStyle?.gap || "40px",
-            minHeight: "200px",
+            display: 'flex',
+            width: '100%',
+            alignItems: 'center',
+            position: 'relative'
           }}
         >
-          {/* 헤더 영역 */}
-          <div className="flex w-full items-center relative">
-            <h2 
-              className="text-xl font-semibold w-full text-center" 
-              style={titleStyle}
-            >
-              {title}
-            </h2>
-            <div
-              className="rounded-full p-1 transition-colors"
-              aria-label="Close modal"
-              style={{
-                position: "absolute",
-                top: "-25px",
-                right: "-20px",
-              }}
-            >
-              <AlertClose 
-                close={onClose}
-              />
-            </div>
-          </div>
-
-          {/* 컨텐츠 영역 */}
-          <div 
+          <h2
             style={{
-              ...DefaultStyle.children,
-              ...childrenStyle,
-              overflowY: "auto",
-              flex: 1,
+              fontSize: '1.25rem',
+              fontWeight: 600,
+              width: '100%',
+              textAlign: 'center',
+              ...titleStyle
             }}
           >
-            {children}
+            {title}
+          </h2>
+          <div
+            style={{
+              position: "absolute",
+              top: "-25px",
+              right: "-20px",
+              borderRadius: '9999px',
+              padding: '4px',
+              transition: 'background-color 0.2s'
+            }}
+            aria-label="Close modal"
+          >
+            <AlertClose 
+              close={onClose}
+            />
           </div>
-          {/* 푸터 버튼 영역 */}
-          <FooterButton 
-            onClose={onClose}
-            onConfirm={onConfirm}
-            confirmText={confirmText || '선택하기'}
-            cancelText={cancelText || '취소하기'}
-          />
         </div>
+
+        {/* 컨텐츠 영역 */}
+        <div
+          style={{
+            ...DefaultStyle.children,
+            ...childrenStyle,
+            overflowY: "auto",
+            flex: 1
+          }}
+        >
+          {children}
+        </div>
+
+        {/* 푸터 버튼 영역 */}
+        <FooterButton
+          onClose={onClose}
+          onConfirm={onConfirm}
+          confirmText={confirmText || '선택하기'}
+          cancelText={cancelText || '취소하기'}
+        />
       </div>
-    </Portal>
-  );
+    </div>
+  </Portal>
+);
 };

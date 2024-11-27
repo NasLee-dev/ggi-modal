@@ -30,7 +30,7 @@ export const FooterButton = ({ onClose, onConfirm, confirmText, cancelText }: Fo
           borderRight: '1px solid #e5e7eb',
           fontWeight: 500,
           transition: 'background-color 0.2s',
-          borderBottomLeftRadius: '16px',
+          borderBottomLeftRadius: '7px',
         }}
         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
         onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
@@ -59,7 +59,7 @@ export const FooterButton = ({ onClose, onConfirm, confirmText, cancelText }: Fo
           backgroundColor: '#2563EB',
           color: 'white',
           transition: 'background-color 0.2s',
-          borderBottomRightRadius: '16px',
+          borderBottomRightRadius: '7px',
         }}
         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
         onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563EB'}
