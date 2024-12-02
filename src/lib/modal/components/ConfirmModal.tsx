@@ -89,7 +89,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             width: modalStyle?.width || 'min(90vw, ' + (sizeStyle.width || '550px') + ')',
             height: modalStyle?.height || "auto",
             padding: modalStyle?.padding || "40px",
-            gap: modalStyle?.gap || "40px",
+            gap: modalStyle?.gap || "20px",
             minHeight: "200px",
             transition: `all ${duration}ms`,
             ...modalStyle

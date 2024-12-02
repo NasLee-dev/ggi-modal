@@ -71,7 +71,7 @@ return (
           padding: modalStyle?.padding || "40px",
           display: 'flex',
           flexDirection: modalStyle?.flexDirection || "column",
-          gap: modalStyle?.gap || "40px",
+          gap: modalStyle?.gap || "20px",
           minHeight: "200px"
         }}
       >

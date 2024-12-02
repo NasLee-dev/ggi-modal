@@ -1,7 +1,6 @@
 import React, { useMemo } from "react"
 import { InfoModalProps } from "../types/modal.types"
 import { Portal } from "./Portal";
-import { cn } from "../utils/cn";
 import { getModalSize } from "../utils/getModalSize";
 import AlertClose from "../icons/AlertClose";
 
@@ -81,17 +80,14 @@ export const InfoModal = ({
           height: modalStyle?.height || "auto",
           padding: modalStyle?.padding || "40px",
           flexDirection: modalStyle?.flexDirection || "column",
-          gap: modalStyle?.gap || "40px",
+          gap: modalStyle?.gap || "20px",
           minHeight: "200px",
         }}
       >
         <div className="flex w-full items-center relative"> 
           <div className="flex flex-col w-full gap-2">
             <span
-              className={cn(
-                "text-xl font-semibold w-full text-left",
-                { "mb-2": description }
-              )}
+              className="w-full text-gray-800 text-lg font-bold font-['SUIT'] leading-normal"
               style={{
                 ...titleStyle,
               }}
@@ -99,9 +95,7 @@ export const InfoModal = ({
               {title}
             </span>
             <span
-              className={cn(
-                "w-full text-gray-800 text-md font-normal font-['SUIT'] leading-[18.90px]"
-              )}
+              className="w-full text-[#2563EB] text-[14px] font-normal font-['SUIT'] leading-[18.90px]"
               style={{
                 ...descriptionStyle,
               }}
