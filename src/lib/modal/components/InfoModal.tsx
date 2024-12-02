@@ -43,9 +43,16 @@ export const InfoModal = ({
   const getRefPosition = useMemo(() => {
     if (!refName) return;
     const elementTop = refName?.current?.getBoundingClientRect().top || 0
+    const elementRight = refName?.current?.getBoundingClientRect().right || 0
     const widnowHeight = window.innerHeight
+    const windowWidth = window.innerWidth
 
-    return elementTop > widnowHeight / 2 ? "bottom" : "top"
+
+    const isRight = elementRight > windowWidth / 2 ? "right" : "left"
+    const isTop = elementTop > widnowHeight / 2 ? "top" : "bottom"
+
+    return `${isTop}-${isRight}` as "top-right" | "top-left" | "bottom-right" | "bottom-left"
+
   }, [refName, isOpen]);
 
   const modalElement = (
@@ -73,9 +80,10 @@ export const InfoModal = ({
           ...defaultStyle.modal,
           zIndex: modalStyle?.zIndex || 10001,
           position: refName ? "absolute" : "relative",
-          top: refName ? getRefPosition === "top" ? "0px" : "auto" : "auto",
-          bottom: refName ? getRefPosition === "bottom" ? "0px" : "auto" : "auto",
-          left: "30px",
+          top: getRefPosition?.includes("top") ? "0px" : "auto",
+          bottom: getRefPosition?.includes("bottom") ? "0px" : "auto",
+          right: getRefPosition?.includes("right") ? "30px" : "auto",
+          left: getRefPosition?.includes("left") ? "30px" : "auto",
           width: modalStyle?.width || modalSize.width,
           height: modalStyle?.height || "auto",
           padding: modalStyle?.padding || "40px",
