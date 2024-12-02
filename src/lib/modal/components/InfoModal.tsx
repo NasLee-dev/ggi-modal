@@ -3,6 +3,7 @@ import { InfoModalProps } from "../types/modal.types"
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
 import AlertClose from "../icons/AlertClose";
+import { useDetectWindow } from "../hooks/useDetectWindow";
 
 export const InfoModal = ({
   size = "lg",
@@ -20,6 +21,7 @@ export const InfoModal = ({
   refName,
 }: InfoModalProps) => {
   const modalSize = getModalSize(size);
+  const isMobile = useDetectWindow();
   const defaultStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -111,17 +113,19 @@ export const InfoModal = ({
               {description}
             </span>
           </div>
-          <div
-            className="rounded-full p-1 transition-colors"
-            aria-label="Close modal"
-            style={{
-              position: "absolute",
-              top: "-25px",
-              right: "-20px",
-            }}
-          >
-            <AlertClose close={onClose} />
-          </div>
+          {!isMobile && (
+            <div
+              className="rounded-full p-1 transition-colors"
+              aria-label="Close modal"
+              style={{
+                position: "absolute",
+                top: "-25px",
+                right: "-20px",
+              }}
+            >
+              <AlertClose close={onClose} />
+            </div>
+          )}
         </div>
         <div 
           style={{
