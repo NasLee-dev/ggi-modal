@@ -51,7 +51,6 @@ export const FooterButton = ({ onClose, onConfirm, confirmText, cancelText }: Fo
       <button
         onClick={() => {
           onConfirm()
-          onClose()
         }}
         style={{
           flex: 1,
