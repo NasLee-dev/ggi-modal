@@ -52,7 +52,6 @@ export default function Ui() {
         title="This is an Info Modal Title"
         description="This is an info modal description"
         hasDimmed={true}
-        hasPosition={false}
       >
         <h1>InfoModal Contents</h1>
       </InfoModal>
@@ -69,7 +68,6 @@ export default function Ui() {
         title="This is an Info Modal Title"
         description="This is an info modal description"
         hasDimmed={true}
-        hasPosition={true}
         refName={ref}
       >
         <h1>InfoModal Contents</h1>

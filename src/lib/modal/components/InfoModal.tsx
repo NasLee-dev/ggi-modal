@@ -18,7 +18,6 @@ export const InfoModal = ({
   description,
   descriptionStyle,
   hasDimmed = false,
-  hasPosition = false,
   refName,
 }: InfoModalProps) => {
   const modalSize = getModalSize(size);
@@ -52,7 +51,7 @@ export const InfoModal = ({
 
   const modalElement = (
     <div 
-      className={`${hasPosition ? 'absolute' : 'fixed flex justify-center items-center'} inset-0 z-[100]`}
+      className={`${refName ? 'absolute' : 'fixed flex justify-center items-center'} inset-0 z-[100]`}
       style={overlayStyle}
     >
       <div
@@ -73,9 +72,9 @@ export const InfoModal = ({
         style={{
           ...modalStyle,
           ...defaultStyle.modal,
-          position: hasPosition ? "absolute" : "relative",
-          top: hasPosition ? getRefPosition?.bottom + 10 : undefined,
-          left: hasPosition ? getRefPosition?.left + 10 : undefined,
+          position: refName ? "absolute" : "relative",
+          top: refName ? getRefPosition?.bottom + 10 : undefined,
+          left: refName ? getRefPosition?.left + 10 : undefined,
           width: modalStyle?.width || modalSize.width,
           height: modalStyle?.height || "auto",
           padding: modalStyle?.padding || "40px",
@@ -132,5 +131,5 @@ export const InfoModal = ({
       </div>
     </div>
   )
-  return hasPosition ? modalElement : <Portal>{modalElement}</Portal>
+  return refName ? modalElement : <Portal>{modalElement}</Portal>
 }

@@ -43,7 +43,6 @@ export interface InfoModalProps extends Omit<BaseModalProps, "confirmText" | "on
   hasDimmed?: boolean;
   description?: string;
   descriptionStyle?: React.CSSProperties;
-  hasPosition?: boolean;
   refName?: React.RefObject<HTMLDivElement>;
 }
 
