@@ -49,7 +49,7 @@ export const InfoModal = ({
 
 
     const isRight = elementRight > windowWidth / 2 ? "right" : "left"
-    const isTop = elementTop > widnowHeight / 2 ? "top" : "bottom"
+    const isTop = elementTop > widnowHeight / 2 ? "bottom" : "top"
 
     return `${isTop}-${isRight}` as "top-right" | "top-left" | "bottom-right" | "bottom-left"
 
