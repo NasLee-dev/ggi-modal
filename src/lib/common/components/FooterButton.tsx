@@ -25,7 +25,7 @@ export const FooterButton = ({ onClose, onConfirm, confirmText, cancelText }: Fo
         onClick={onClose}
         style={{
           flex: 1,
-          padding: '16px',
+          padding: '12px',
           backgroundColor: '#F3F4F6',
           borderRight: '1px solid #e5e7eb',
           fontWeight: 500,
@@ -55,11 +55,11 @@ export const FooterButton = ({ onClose, onConfirm, confirmText, cancelText }: Fo
         }}
         style={{
           flex: 1,
-          padding: '16px',
+          padding: '12px',
           backgroundColor: '#2563EB',
           color: 'white',
           transition: 'background-color 0.2s',
-          borderBottomRightRadius: '7px',
+          borderBottomRightRadius: '16px',
         }}
         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
         onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563EB'}

@@ -20,6 +20,7 @@ cancelText,
 onConfirm,
 size = "lg",
 position = "center",
+hasDimmed = false,
 ...props
 }) => {
 const modalSize = getModalSize(size);
@@ -53,7 +54,7 @@ return (
           position: 'fixed',
           inset: 0,
           transition: 'opacity 0.2s',
-          ...DefaultStyle.overlay
+          backgroundColor: hasDimmed ? 'rgba(0, 0, 0, 0.6)' : 'transparent',
         }}
         onClick={onClose}
       />
@@ -64,7 +65,7 @@ return (
           ...DefaultStyle.modal,
           position: "relative",
           backgroundColor: 'white',
-          borderRadius: '8px',
+          borderRadius: '16px',
           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
           width: modalStyle?.width || 'min(90vw, ' + (modalSize.width || '550px') + ')',
           height: modalStyle?.height || "auto",
@@ -75,7 +76,6 @@ return (
           minHeight: "200px"
         }}
       >
-        {/* 헤더 영역 */}
         <div 
           style={{
             display: 'flex',
@@ -111,8 +111,6 @@ return (
             />
           </div>
         </div>
-
-        {/* 컨텐츠 영역 */}
         <div
           style={{
             ...DefaultStyle.children,
@@ -123,8 +121,6 @@ return (
         >
           {children}
         </div>
-
-        {/* 푸터 버튼 영역 */}
         <FooterButton
           onClose={onClose}
           onConfirm={onConfirm}

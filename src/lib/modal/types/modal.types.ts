@@ -33,7 +33,10 @@ export interface ModalProps {
   overlayStyle?: React.CSSProperties; 
 }
 
-export interface BaseModalProps extends ModalProps {}
+export interface BaseModalProps extends ModalProps {
+  hasDimmed?: boolean;
+  
+}
 
 export interface AlertModalProps extends Omit<BaseModalProps, "confirmText" | "onConfirm" | "cancelText"> {
   description?: string;
