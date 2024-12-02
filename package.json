@@ -1,6 +1,6 @@
 {
   "name": "@ggi-kit/modal",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "modal component for ggi",
   "main": "index.js",
   "module": "dist/index.esm.js",
