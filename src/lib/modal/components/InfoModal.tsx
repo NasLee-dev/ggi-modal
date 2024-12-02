@@ -41,11 +41,12 @@ export const InfoModal = ({
   }
 
   if (!isOpen) return null;
-  const getRefPosition = useMemo(() => refName?.current?.getBoundingClientRect() || {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
+  const getRefPosition = useMemo(() => {
+    if (!refName) return;
+    const elementTop = refName?.current?.getBoundingClientRect().top || 0
+    const widnowHeight = window.innerHeight
+
+    return elementTop > widnowHeight / 2 ? "bottom" : "top"
   }, [refName, isOpen]);
 
   const modalElement = (
@@ -73,8 +74,9 @@ export const InfoModal = ({
           ...defaultStyle.modal,
           zIndex: modalStyle?.zIndex || 10001,
           position: refName ? "absolute" : "relative",
-          top: refName ? getRefPosition?.bottom + 10 : undefined,
-          left: refName ? getRefPosition?.left + 10 : undefined,
+          top: refName ? getRefPosition === "top" ? "0px" : "auto" : "auto",
+          bottom: refName ? getRefPosition === "bottom" ? "0px" : "auto" : "auto",
+          left: "30px",
           width: modalStyle?.width || modalSize.width,
           height: modalStyle?.height || "auto",
           padding: modalStyle?.padding || "40px",
