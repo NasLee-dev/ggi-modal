@@ -34,8 +34,8 @@ export interface ModalProps {
 }
 
 export interface BaseModalProps extends ModalProps {
+  onCancelButton: () => void;
   hasDimmed?: boolean;
-  
 }
 
 export interface AlertModalProps extends Omit<BaseModalProps, "confirmText" | "onConfirm" | "cancelText"> {

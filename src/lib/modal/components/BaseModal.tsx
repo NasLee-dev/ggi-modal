@@ -21,6 +21,8 @@ onConfirm,
 size = "lg",
 position = "center",
 hasDimmed = false,
+onCancelButton,
+closeOnOverlayClick = true,
 ...props
 }) => {
 const modalSize = getModalSize(size);
@@ -122,7 +124,7 @@ return (
           {children}
         </div>
         <FooterButton
-          onClose={onClose}
+          onClose={onCancelButton}
           onConfirm={onConfirm}
           confirmText={confirmText || '선택하기'}
           cancelText={cancelText || '취소하기'}
