@@ -3,7 +3,6 @@ import { InfoModalProps } from "../types/modal.types"
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
 import AlertClose from "../icons/AlertClose";
-import { useDetectWindow } from "../hooks/useDetectWindow";
 
 export const InfoModal = ({
   size = "lg",
@@ -21,7 +20,7 @@ export const InfoModal = ({
   refName,
 }: InfoModalProps) => {
   const modalSize = getModalSize(size);
-  const isMobile = useDetectWindow();
+  const isMobile = window.innerWidth < 768;
   const defaultStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
