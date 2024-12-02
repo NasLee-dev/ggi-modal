@@ -124,7 +124,7 @@ return (
           {children}
         </div>
         <FooterButton
-          onClose={onCancelButton}
+          onClose={onCancelButton || onClose}
           onConfirm={onConfirm}
           confirmText={confirmText || '선택하기'}
           cancelText={cancelText || '취소하기'}

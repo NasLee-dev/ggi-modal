@@ -34,7 +34,7 @@ export interface ModalProps {
 }
 
 export interface BaseModalProps extends ModalProps {
-  onCancelButton: () => void;
+  onCancelButton?: () => void;
   hasDimmed?: boolean;
 }
 
