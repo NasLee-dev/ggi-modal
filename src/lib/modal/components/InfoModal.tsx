@@ -30,7 +30,6 @@ export const InfoModal = ({
       borderRadius: "16px",
       boxShadow: "0px 20px 13px 0px rgba(0, 0, 0, 0.03), 0px 8px 5px 0px rgba(0, 0, 0, 0.08)",
       display: "flex",
-      zIndex: 101,
     },
     title: {
       fontSize: "1.5rem",
@@ -72,6 +71,7 @@ export const InfoModal = ({
         style={{
           ...modalStyle,
           ...defaultStyle.modal,
+          zIndex: modalStyle?.zIndex || 10001,
           position: refName ? "absolute" : "relative",
           top: refName ? getRefPosition?.bottom + 10 : undefined,
           left: refName ? getRefPosition?.left + 10 : undefined,
