@@ -11,6 +11,7 @@ export const BaseModal: React.FC<BaseModalProps> = ({
 isOpen,
 onClose,
 title,
+description,
 children,
 overlayStyle,
 modalStyle,
@@ -88,17 +89,41 @@ return (
             position: 'relative'
           }}
         >
-          <h2
+          <div 
             style={{
-              fontSize: '1.25rem',
-              fontWeight: 600,
+              display: 'flex',
               width: '100%',
-              textAlign: 'center',
-              ...titleStyle
+              justifyContent: 'center',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '10px'
             }}
           >
-            {title}
-          </h2>
+            <h2
+              style={{
+                fontSize: '1.25rem',
+                fontFamily: 'SUIT',
+                fontWeight: 600,
+                width: '100%',
+                textAlign: 'center',
+                ...titleStyle
+              }}
+            >
+              {title}
+            </h2>
+            <span
+              style={{
+                width: '100%',
+                color: '#2563EB',
+                fontSize: '14px',
+                fontWeight: 'normal',
+                fontFamily: 'SUIT',
+                lineHeight: '18.90px'
+              }}
+            >
+              {description}
+            </span>
+          </div>
           <div
             style={{
               position: "absolute",

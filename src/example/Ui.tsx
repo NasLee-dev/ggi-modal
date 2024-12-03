@@ -35,6 +35,10 @@ export default function Ui() {
         isOpen={modals.base}
         onClose={() => closeModal("base")}
         title="Base Modal"
+        titleStyle={{
+          textAlign: "left"
+        }}
+        description="This is a base modal description"
         onConfirm={() => console.log("base")}
       >
         <div className="flex flex-col">
