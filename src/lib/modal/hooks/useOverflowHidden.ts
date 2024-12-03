@@ -9,11 +9,10 @@ export const useOverflowHidden = ({ isOpen }:
     const appElement = document.body || document.getElementById("root")
 
     if (isOpen) {
-      const originalOverflow = appElement.style.overflow
       appElement.style.overflow = "hidden"
 
       return () => {
-        appElement.style.overflow = originalOverflow
+        appElement.style.overflow = "auto"
       }
     }
   }, [isOpen])
