@@ -5,6 +5,7 @@ import { FooterButton } from "../../common/components/FooterButton";
 import { getModalSize } from "../utils/getModalSize";
 import { DefaultStyle } from "../constants/defaultStyle";
 import AlertClose from "../icons/AlertClose";
+import { useOverflowHidden } from "../hooks/useOverflowHidden";
 
 export const BaseModal: React.FC<BaseModalProps> = ({
 isOpen,
@@ -25,6 +26,7 @@ onCancelButton,
 closeOnOverlayClick = true,
 ...props
 }) => {
+useOverflowHidden({ isOpen });
 const modalSize = getModalSize(size);
 
 const getPositionStyle = () => {

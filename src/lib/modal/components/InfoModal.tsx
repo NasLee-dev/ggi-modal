@@ -1,8 +1,9 @@
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { InfoModalProps } from "../types/modal.types"
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
 import AlertClose from "../icons/AlertClose";
+import { useOverflowHidden } from "../hooks/useOverflowHidden";
 
 export const InfoModal = ({
   size = "lg",
@@ -19,6 +20,7 @@ export const InfoModal = ({
   hasDimmed = false,
   refName,
 }: InfoModalProps) => {
+  useOverflowHidden({ isOpen });
   const modalSize = getModalSize(size);
   const isMobile = window.innerWidth < 768;
   const defaultStyle = {
@@ -40,7 +42,6 @@ export const InfoModal = ({
     },
   }
 
-  if (!isOpen) return null;
   const getRefPosition = useMemo(() => {
     if (!refName) return;
     const elementTop = refName?.current?.getBoundingClientRect().top || 0
@@ -56,6 +57,7 @@ export const InfoModal = ({
 
   }, [refName, isOpen]);
 
+  if (!isOpen) return null;
   const modalElement = (
     <div 
       className={`${refName ? 'absolute' : 'fixed flex justify-center items-center'} inset-0 z-[100]`}

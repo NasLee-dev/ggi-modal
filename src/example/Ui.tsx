@@ -72,6 +72,11 @@ export default function Ui() {
       >
         <h1>InfoModal Contents</h1>
       </InfoModal>
+      <div
+        className="w-full h-[2000px] bg-gray-200"
+      >
+        TEST SCROLL
+      </div>
     </div>
   )
 }

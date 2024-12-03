@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ConfirmModalProps } from "../types/modal.types";
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
+import { useOverflowHidden } from "../hooks/useOverflowHidden";
 
 export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   isOpen,
@@ -24,7 +25,8 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   buttonPosition = "center",
   ...props
 }) => {
-  const sizeStyle = getModalSize(size);
+  useOverflowHidden({ isOpen });
+  const modalSize = getModalSize(size);
 
   useEffect(() => {
     if (closeOnEsc) {
@@ -55,7 +57,6 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   };
 
   if (!isOpen) return null;
-
   return (
     <Portal>
       <div
@@ -86,7 +87,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             backgroundColor: 'white',
             borderRadius: '8px',
             boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-            width: modalStyle?.width || 'min(90vw, ' + (sizeStyle.width || '550px') + ')',
+            width: modalStyle?.width || 'min(90vw, ' + (modalSize.width || '550px') + ')',
             height: modalStyle?.height || "auto",
             padding: modalStyle?.padding || "40px",
             gap: modalStyle?.gap || "20px",

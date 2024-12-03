@@ -3,6 +3,7 @@ import AlertClose from "../icons/AlertClose";
 import { AlertModalProps } from "../types/modal.types";
 import { Portal } from "./Portal";
 import { getModalSize } from "../utils/getModalSize";
+import { useOverflowHidden } from "../hooks/useOverflowHidden";
 
 export const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
@@ -18,9 +19,8 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   position = "center",
   ...props
 }) => {
+  useOverflowHidden({ isOpen });
   const modalSize = getModalSize(size);
-
-  // 기본 스타일과 props로 받은 스타일을 병합
   const finalModalStyle = {
     display: 'flex',
     justifyContent: 'center',
